@@ -165,6 +165,7 @@ src/styles/           theme tokens and layout
 scripts/setup.ts      npm run setup
 scripts/check.ts      npm run check (exits non-zero on a broken config; use it in CI)
 scripts/build-poster.ts  npm run build:poster → docs/poster/
+AGENTS.md             rules and commands for AI coding agents working on the code
 examples/             a DEO, a city, a municipality
 ```
 
