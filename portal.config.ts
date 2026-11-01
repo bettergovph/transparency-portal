@@ -26,7 +26,257 @@ export default defineConfig({
     districts: [
       "leg:pasig-city:lone"
     ],
-    exclude: []
+    exclude: [
+      // Isla Pulong Pasig, Calauag, Quezon (10 lines)
+      {
+        key: "gaa:18-001|construction of access roads leading to isla pulong pasig sta 3800  sta 4220 sta 4260  sta 4900 sta 5010  sta 5170 calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pinagsakayankinamaliganatulayanlagaykunalumvilla magsinosto angel road leading to isla pulong pasig beach sta 017700  sta 017810 calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pinagsakayankinamaliganatulayanlagaykunalumvilla magsinosto angel road leading to isla pulong pasig beach calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pinagsakayan  kinamaligan  atulayan  lagay  kunalum  villa magsino  sto angel road leading to isla pulong pasig beach calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of access road leading to isla pulong pasig calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|constructionimprovement of access road leading to isla pulong pasig calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|constructionimprovement of road phase 2 leading to isla pulong pasig in calauag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pinagsakayankinamaliganatulayanlagaykunalumvilla magsinosto angel road leading to isla pulong pasig beach calauag quezon package ii",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pinagsakayankinamaliganatulayanlagaykunalumvilla magsinosto angel road leading to isla pulong pasig beach calauag quezon package iii",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of access road leading to isla pulong pasig caluag quezon",
+        reason: "In Isla Pulong Pasig, Calauag, Quezon (Quezon Province), not Pasig City.",
+      },
+
+      // Pasig-Potrero River and Pampanga projects (22 lines)
+      {
+        key: "gaa:05-001|concreting of fmr at brgy pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of candaba  baliwag road pasig section candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|flood mitigation structure constructionimprovement of pasig potrero river right bankfacing downstream phase ii talba bacolor pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of road candaba  baliwag road pasig  poblacion section candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|pasig  potrero river  bacolor section   pampanga  ra 9506  bacolor rehabilitation act",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:35-005|pasig  potrero river irrigation project pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of pampanga river along candaba pampanga  mandasig  pasig  lanang section",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|flood control works  dikingslope protection of pasigpotrero river bacolor and porac pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|flood control works  pasigpotrero river and san fernando  sto tomas  minalin taildike san fernando and bacolor section pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of road brgy pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of candaba infirmary hospital brgy pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of don honorio ventura state university dhvsu candaba convention center barangay pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of slope protection with spurdike along pasigpotrero river manuali porac pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of bank protection along pasigpotrero river manuali phase 1 porac pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of pasig road sitio talipapa barangay pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose building at barangay pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of spurdike along pasig  potrero river phase i sta 00000  sta 0150 porac pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of spurdike along pasig  potrero river phase ii sta 00000  sta 0150 porac pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|constructionrehabilitation of multipurpose building in pansol barangay pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of groundsills across pasigpotrero river at downstream of mancatian bridge angelesporac river groundsills no2 pampanga",
+        reason: "Pasig-Potrero River project in Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose buildingcovered court pansol pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|rehabilitation of multipurpose building barangay pasig candaba pampanga",
+        reason: "In Barangay Pasig, Candaba, Pampanga, not Pasig City.",
+      },
+
+      // Barangay Pasig in other provinces (14 lines)
+      {
+        key: "gaa:18-001|construction of road barangay guisad central and construction of slope protection structure at purok tondo and purok pasig santo nio slaughter baguio city",
+        reason: "At Purok Pasig, Baguio City, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of road barangay pasig sara iloilo",
+        reason: "In Barangay Pasig, Sara, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|concreting of junction national road to barangay pasig claveria masbate",
+        reason: "In Barangay Pasig, Claveria, Masbate, not Pasig City.",
+      },
+      {
+        key: "gaa:05-001|concreting of sitio tuburan brgy pasig fmr brgy pasig sara iloilo",
+        reason: "In Barangay Pasig, Sara, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction  completion  of multi  purpose building barangay pasig sara iloilo",
+        reason: "In Barangay Pasig, Sara, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction  completion  of multi  purpose building brgy pasigay calbiga samar",
+        reason: "In Barangay Pasigay, Calbiga, Samar, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of junction national road to barangay pasig claveria masbate",
+        reason: "In Barangay Pasig, Claveria, Masbate, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose building brgy pasig sara iloilo",
+        reason: "In Barangay Pasig, Sara, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction completion of multipurpose building barangay pasig lambunao iloilo",
+        reason: "In Barangay Pasig, Lambunao, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose building camarines norte state college barangay 2 pasig daet camarines norte",
+        reason: "In Barangay 2 Pasig, Daet, Camarines Norte, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction completion of multipurpose covered court brgy pasig sara iloilo",
+        reason: "In Barangay Pasig, Sara, Iloilo, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose building in pasigay calbiga samar",
+        reason: "In Barangay Pasigay, Calbiga, Samar, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of multipurpose building including site development works camarines norte district engineering office pasig daet camarines norte",
+        reason: "In Barangay 2 Pasig, Daet, Camarines Norte, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of twostorey building dpwh standard design of camarines norte deo pasig daet camarines norte",
+        reason: "In Barangay 2 Pasig, Daet, Camarines Norte, not Pasig City.",
+      },
+
+      // Pasig River projects in Sta. Ana Manila
+
+      {
+        key: "gaa:18-001|construction of bridge over pasig river phase 5 sta ana market to barangay 900 sta ana manila chainage 000  chainage 116",
+        reason: "Pasig River project in Sta. Ana, Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of bridge over pasig river at sta ana market to barangay 900 punta sta ana manila phase 3",
+        reason: "Pasig River project in Sta. Ana, Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of walkway bridgehanging bridge over pasig river phase 3 at sta ana market to barangay 900 punta sta ana manila city",
+        reason: "Pasig River project in Sta. Ana, Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of walkway bridgehanging bridge over pasig river at sta ana market to barangay 900 punta sta ana manila phase ii",
+        reason: "Pasig River project in Sta. Ana, Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of walkway bridgehanging bridge over pasig river at sta ana market to barangay 900 punta sta ana manila",
+        reason: "Pasig River project in Sta. Ana, Manila, not Pasig City.",
+      },
+
+      // Pasig Line St. project in Sta. Ana, Manila
+      {
+        key: "gaa:18-001|improvement of pasig line st and oro a st and vicinity zone 85 sta ana manila",
+        reason: "Pasig Line St. project in Sta. Ana, Manila, not Pasig City.",
+      },
+
+      // Pasig River Esplanade, Ayala Bridge to Jones Bridge, Manila (4 phases)
+      {
+        key: "gaa:18-001|pasig river esplanade from ayala bridge to jones bridge along pasig river manila",
+        reason: "Pasig River Esplanade runs along Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of road pasig river esplanade from ayala bridge to jones bridge along pasig river manila phase ii",
+        reason: "Pasig River Esplanade runs along Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of road pasig river esplanade from ayala bridge to jones bridge along pasig river manila  phase iii",
+        reason: "Pasig River Esplanade runs along Manila, not Pasig City.",
+      },
+      {
+        key: "gaa:18-001|construction of pasig river esplanade from ayala bridge to jones bridge along pasig river manila phase iv",
+        reason: "Pasig River Esplanade runs along Manila, not Pasig City.",
+      },
+
+      // Estrella Street drainage, Makati City
+      {
+        key: "gaa:18-001|construction of drainage main along estrella street from edsa towards pasig river barangay guadalupe viejo makati city",
+        reason: "Drainage project on Estrella Street, Makati City, not Pasig City.",
+      },
+
+      // Dredging of Pasig River near Malacañang Palace
+      {
+        key: "gaa:36-001|dredging of pasig river near malacaang palace",
+        reason: "National-government dredging project spanning multiple cities along the Pasig River; not exclusive to Pasig City.",
+      },
+
+    ]
   },
   reporting: {
     enabled: false
