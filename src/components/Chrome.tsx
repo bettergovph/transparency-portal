@@ -119,6 +119,10 @@ export function Footer() {
             <a href={NATIONAL_URL} target="_blank" rel="noopener">budget.bettergov.ph ↗</a>
           </li>
           <li>
+            <span className="label">Miagao transparency portal</span>
+            <a href="https://bettermiagao.org" target="_blank" rel="noopener">bettermiagao.org ↗</a>
+          </li>
+          <li>
             <span className="label">Data</span>
             <a href={`${client.base}/docs`} target="_blank" rel="noopener">Budget API and MCP ↗</a>
           </li>
