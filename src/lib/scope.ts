@@ -14,6 +14,7 @@ import { DATASET_KEYS, type DatasetKey, type Exclusion, type PortalConfig } from
 import type { Client, Params } from '../api/client';
 import type { BridgeGroup, Disclaimer, Meta, OfficeLens, ProjectRow } from '../api/types';
 import { BRIDGE_GROUPS } from '../api/types';
+import { onlyInsideWords } from './match';
 
 export type Reason =
   | { kind: 'office'; label: string }
@@ -34,8 +35,10 @@ export interface QueryReport {
   region?: string;
   /** Rows the API returned. */
   total: number;
-  /** Rows kept (after the region rule). */
+  /** Rows kept (after the whole-word and region rules). */
   kept: number;
+  /** Place queries: titles left out because the place's words are only part of longer words. */
+  partial: string[];
   truncated: boolean;
   /** The API request, for anyone who wants to check the list. */
   api: string;
@@ -83,7 +86,12 @@ export async function resolveScope(client: Client, config: PortalConfig): Promis
 
   for (const [i, job] of jobs.entries()) {
     const { list, rows: fetched, truncated } = results[i];
-    const rows = job.region ? fetched.filter((r) => r.region_key == null || r.region_key === job.region) : fetched;
+    // The API's q also matches inside words; a place query leaves those rows out.
+    const q = job.kind === 'place' ? String(job.params.q) : null;
+    const inside = (r: ProjectRow) => q != null && onlyInsideWords(q, r.title, r.program, r.pap, r.region, r.office);
+    const named = fetched.filter((r) => !inside(r));
+    const partial = fetched.filter(inside).map((r) => r.title);
+    const rows = job.region ? named.filter((r) => r.region_key == null || r.region_key === job.region) : named;
     meta ??= list.meta;
     for (const d of list.disclaimers) if (!disclaimers.has(d.id)) disclaimers.set(d.id, d);
     queries.push({
@@ -94,6 +102,7 @@ export async function resolveScope(client: Client, config: PortalConfig): Promis
       region: job.region,
       total: list.data.total,
       kept: rows.length,
+      partial,
       truncated,
       api: client.href(`/datasets/${job.dataset}/projects`, job.params),
       officeLens: list.data.office_lens,

@@ -27,7 +27,8 @@ export interface PlaceQuery {
   label: string;
   /**
    * The API search. Every word must appear in the project's title or listing
-   * ("Tagbilaran Bohol" needs both). Defaults to `label`.
+   * ("Tagbilaran Bohol" needs both), as a whole word ("Taytay" does not bring
+   * in "Taytayan"). Defaults to `label`.
    */
   q?: string;
   /** A region key ("VII", "NCR", "IV-A") to keep a common name to one region. */

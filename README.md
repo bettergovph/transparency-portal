@@ -66,11 +66,14 @@ scope: {
 - **A place name** searches the titles of all four programs: DPWH, farm-to-market roads,
   health facilities and irrigation. That catches projects under the DPWH Central Office
   and the programs that have no office. `q` is the search: every word must appear
-  (`'Carmen Bohol'` needs both). `region` keeps a common name to one region; lines that
+  (`'Carmen Bohol'` needs both), as a whole word (`'Taytay'` does not bring in
+  "Taytayan"). `region` keeps a common name to one region; lines that
   give no region at all (the irrigation list) are kept, since they cannot be ruled out.
 - **The same place names** search the enacted budgets, 2020–2026: every department's
-  programs, activities and projects whose name contains `q`. The GAA has no region, so
-  `region` cannot narrow these; make `q` specific instead. DPWH offices' yearly totals
+  programs, activities and projects whose name has `q`, again as whole words.
+  The GAA has no region, so `region` cannot narrow these; make `q` specific instead. A
+  place that shares its name with another (Taytay, Rizal and Taytay, Palawan) still
+  brings in both; exclude the namesakes. DPWH offices' yearly totals
   come with the offices.
 - **Exclusions** are for namesakes: `<program>:<id>` for a 2027 line, `gaa:<family key>`
   for a 2020–2026 program (the key is in the CSV). `npm run check -- --verbose` lists the

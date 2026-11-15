@@ -15,6 +15,9 @@
  * - A family is one name; a renamed project is a different row.
  * - Names are matched, not places surveyed, and the GAA carries no region, so
  *   a place's `region` cannot narrow these; `q` has to.
+ * - The API's `q` also matches inside words ("Taytay" finds "Taytayan"). A
+ *   name that has a word of `q` only inside longer words is left out, and
+ *   counted per search, so nothing is dropped unseen.
  * - DPWH money by office per year is not here: it comes with each office from
  *   the district pages (see OfficeHistory on the page).
  */
@@ -22,6 +25,7 @@ import type { Exclusion, PortalConfig } from '../config';
 import type { Client } from '../api/client';
 import type { GaaDepartment, GaaProgram } from '../api/types';
 import { GAA_YEARS } from '../api/types';
+import { onlyInsideWords } from './match';
 
 export interface GaaRow extends GaaProgram {
   /** `gaa:<fam_key>`, the key exclusions use. */
@@ -40,6 +44,8 @@ export interface GaaQuery {
   matched: number;
   /** Families fetched (less than matched only when cut at the limit). */
   fetched: number;
+  /** Families fetched but left out: the place's words are only part of longer words in the name. */
+  partial: GaaProgram[];
   truncated: boolean;
   api: string;
 }
@@ -108,10 +114,12 @@ export async function resolveGaa(client: Client, config: PortalConfig, onProgres
       department: j.department.description,
       matched,
       fetched: rows.length,
+      partial: rows.filter((r) => onlyInsideWords(j.q, r.name)),
       truncated,
       api: client.href(`/api/v1/gaa/departments/${j.department.id}/programs`, { q: j.q }),
     });
     for (const r of rows) {
+      if (onlyInsideWords(j.q, r.name)) continue;
       const key = gaaKey(r.fam_key);
       const seen = byKey.get(key);
       if (!seen) byKey.set(key, { ...r, key, department: j.department.description, reasons: [j.place] });
