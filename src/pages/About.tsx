@@ -73,6 +73,7 @@ function AboutView({ scope, overview }: { scope: ScopeResult; overview: Overview
               <span role="cell">
                 {q.kind === 'office' ? <>are listed under <strong>{q.label}</strong></> : <>have a title naming <strong>{String(q.params.q)}</strong></>}
                 {q.region && <span className="muted small"> · kept to region {q.region}, or giving no region</span>}
+                {q.partial.length > 0 && <span className="muted small"> · {count(q.partial.length)} left out, where the name is only part of a longer word</span>}
               </span>
               <span role="cell">{label(q.dataset)}</span>
               <span role="cell" className="r num">{count(q.total)}</span>
@@ -200,7 +201,10 @@ function GaaQuestions() {
             </div>
             {state.value.queries.map((q) => (
               <div className="tr" role="row" key={q.place + q.department_id}>
-                <span role="cell"><strong>{q.q}</strong></span>
+                <span role="cell">
+                  <strong>{q.q}</strong>
+                  {q.partial.length > 0 && <span className="muted small"> · {count(q.partial.length)} left out, where the name is only part of a longer word</span>}
+                </span>
                 <span role="cell">{departmentShort(q.department)}</span>
                 <span role="cell" className="r num">{count(q.matched)}</span>
                 <span role="cell" className="r num">{count(q.fetched)}</span>

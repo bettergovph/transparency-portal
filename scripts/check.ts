@@ -37,7 +37,9 @@ async function main() {
   for (const q of scope.queries) {
     const what = q.kind === 'office' ? `office "${q.label}"` : `title names "${q.label}" (q=${q.params.q})`;
     const kept = q.region ? ` · ${count(q.kept)} kept in region ${q.region} or giving no region` : '';
-    console.log(`  ${q.dataset.padEnd(5)} ${what}: ${count(q.total)}${kept}`);
+    const partial = q.partial.length ? ` · ${count(q.partial.length)} left out (the name is only part of a longer word)` : '';
+    console.log(`  ${q.dataset.padEnd(5)} ${what}: ${count(q.total)}${partial}${kept}`);
+    if (verbose) for (const t of q.partial) console.log(`        left out: ${t}`);
     if (q.kind === 'office') {
       if (q.total === 0) problems.push(`office "${q.label}" matches no DPWH line. Use the name as published: npm run setup -- --list-offices`);
       const lens = q.officeLens;
@@ -88,12 +90,14 @@ async function main() {
     const gaa = await resolveGaa(api, config);
     console.log(`\nEnacted budgets 2020–2026: ${plural(gaa.rows.length, "program or project", "programs and projects")} name the places (${count(gaa.searched)} departments searched)`);
     for (const q of gaa.queries) {
-      console.log(`  "${q.q}" in ${departmentShort(q.department)}: ${count(q.matched)}${q.truncated ? ` (cut at ${count(q.fetched)})` : ''}`);
+      const partial = q.partial.length ? ` · ${count(q.partial.length)} left out (the name is only part of a longer word)` : '';
+      console.log(`  "${q.q}" in ${departmentShort(q.department)}: ${count(q.matched)}${q.truncated ? ` (cut at ${count(q.fetched)})` : ''}${partial}`);
+      if (verbose) for (const r of q.partial) console.log(`        left out: ${r.name}`);
       if (q.truncated) problems.push(`"${q.q}" matches ${count(q.matched)} ${departmentShort(q.department)} programs, more than the portal loads. Make q narrower.`);
     }
     for (const t of gaaYearTotals(gaa.rows)) console.log(`  ${t.year}: ${php(t.amount)} on ${count(t.programs)} programs`);
 
-    // Reconcile: for every search and year, the rows loaded add up to the API's own total for that search.
+    // Reconcile: for every search and year, the rows loaded (kept, excluded or left out) add up to the API's own total for that search.
     const withExcluded = [...gaa.rows, ...gaa.excluded.flatMap((x) => (x.row ? [x.row] : []))];
     let checked = 0;
     for (const q of gaa.queries) {
@@ -101,7 +105,7 @@ async function main() {
       const mine = withExcluded.filter((r) => r.department_id === q.department_id && r.reasons.includes(q.place));
       for (const year of GAA_YEARS) {
         const theirs = (await api.json<GaaEnvelope<unknown[]>>(`/api/v1/gaa/departments/${q.department_id}/programs`, { q: q.q, limit: 1, year })).meta.matched_amount ?? 0;
-        const ours = mine.reduce((a, r) => a + (r.years[String(year)]?.amount ?? 0), 0);
+        const ours = [...mine, ...q.partial].reduce((a, r) => a + (r.years[String(year)]?.amount ?? 0), 0);
         checked++;
         if (ours !== theirs) problems.push(`"${q.q}" in ${departmentShort(q.department)}, ${year}: rows add up to ${php(ours)}, the API says ${php(theirs)}.`);
       }

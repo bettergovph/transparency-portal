@@ -32,6 +32,12 @@ Every response carries `meta` (with `notice`, the source commit and build date) 
 - The irrigation list gives no region, so the API's `region` filter would drop every
   irrigation line. The portal applies a place's region itself and keeps lines with no
   region.
+- `q` matches inside words, in the 2027 lists and in the GAA: "Taytay" also returns
+  "Taytayan" and "Puntataytay". The portal leaves out a row that has a word of `q` only
+  inside longer words (`onlyInsideWords` in `src/lib/match.ts`), and counts those rows
+  per search on the About page and in `npm run check`. A word that is nowhere in a row's
+  text rules nothing out: the 2027 `q` also searches fields the list does not return (a
+  health facility's province).
 - `house_php` is the House bill amount the comparison uses: third reading for DPWH,
   second reading for the other three programs (their lists are the same at both
   readings).
